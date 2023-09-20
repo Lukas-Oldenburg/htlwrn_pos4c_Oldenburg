@@ -1,10 +1,22 @@
-﻿namespace FourWins;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace FourWins;
 
 public class Program
 {
     public static int Main(string[] args)
     {
-        // Your code here!       
+        int numRows = 6; int numCols = 7;
+        int[,] game = new int[numRows, numCols];
+        for (int row = 0; row < numRows; row++)
+        {
+            for (int col = 0; col < numCols; col++)
+            {
+                game[row, col] = 1;
+            }
+        }
+        PrintGameField(game, numRows, numCols);
+        return 0;    
     }
 
     /// <summary>
@@ -14,10 +26,55 @@ public class Program
     /// Walls are blue or other chars, player one is red and/or 'x' , player two is yellow and/or 'o'.
     /// </remarks>
     /// <param name="field">The field.</param>
-    private static void PrintGameField(int[,] field)
+    private static void PrintGameField(int[,] field, int numRows, int numCols)
     {
-        // Your code here!  
+       
+
+
+        for (int rowLV = 0; rowLV < numRows; rowLV++)
+        {
+            if(rowLV == 0)
+            {
+                for (int ersteZeileLV = 0; ersteZeileLV < numCols; ersteZeileLV++)
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.Write("  ");
+                    Console.Write("  ");
+                    Console.ResetColor();
+                }
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.Write("  ");
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+            for (int colLV = 0; colLV < numCols; colLV++)
+            {
+                 Console.BackgroundColor = ConsoleColor.Blue;
+                 Console.Write("  ");
+                 Console.ResetColor();
+                 Console.Write("  ");
+            }
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Write("  ");
+            Console.ResetColor();
+            Console.WriteLine();
+            for (int colLV = 0; colLV < numCols; colLV++)
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.Write("  ");
+                Console.Write("  ");
+                Console.ResetColor();
+            }
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Write("  ");
+            Console.ResetColor();
+            if ()
+
+        }
+
     }
+
+
 
     /// <summary>
     /// Adds the player disc to the game board on the given column.
@@ -34,7 +91,7 @@ public class Program
     /// </returns>
     private static bool AddPlayerDisc(int[,] field, int playerNr, int addOnColumn)
     {
-        // Your code here!  
+        return true;
     }
 
     /// <summary>
@@ -57,6 +114,7 @@ public class Program
     /// </returns>
     private static bool IsGameEnd(int[,] field, out int winnerPlayer)
     {
-        // Your code here!  
+        winnerPlayer = 0;
+        return true;  
     }
 }
