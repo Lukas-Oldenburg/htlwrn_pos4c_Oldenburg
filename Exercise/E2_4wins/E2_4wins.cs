@@ -1,21 +1,70 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FourWins;
 
 public class Program
 {
+    private static int numRows = 6;
+    private static int numCols = 7;
+    private static int activeRow, activeCol;
+    private static int rounds;
+    private static int playerNr = 1;
     public static int Main(string[] args)
     {
-        int numRows = 6; int numCols = 7;
-        int[,] game = new int[numRows, numCols];
-        for (int row = 0; row < numRows; row++)
+        //Erstellen des Arrays
+
+        if (args.Length != 0)
         {
-            for (int col = 0; col < numCols; col++)
+            string[] rc = args[0].Split('x');
+            if (!int.TryParse(rc[0], out numRows))
             {
-                game[row, col] = 1;
+                numRows = 6;
+            }
+            if (!int.TryParse(rc[1], out numCols))
+            {
+                numCols = 7;
             }
         }
-        PrintGameField(game, numRows, numCols);
+        if (numCols < 4 || numRows < 4)
+        {
+            numRows = 6;
+            numCols = 7;
+        }
+        int[,] game = new int[numRows, numCols];
+        //Ende von Array erstellen
+        string eingabe;
+        int winnerPlayer;
+        int addOnColumn;
+        PrintGameField(game);
+        while (!IsGameEnd(game, out winnerPlayer))
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Player {playerNr}s turn!");
+            Console.Write("Choose a column: ");
+            eingabe = Console.ReadLine();
+            if (Int32.TryParse(eingabe, out addOnColumn))
+            {
+                if ((addOnColumn <= game.GetLength(1) && addOnColumn >= 1) && ((game[0, addOnColumn - 1]) == 0))
+                { 
+                    if (playerNr == 1)
+                    {
+                        AddPlayerDisc(game, playerNr, addOnColumn);
+                        PrintGameField(game);
+                        playerNr = 2;
+                    }
+
+                    else if (playerNr == 2)
+                    {
+                        AddPlayerDisc(game, playerNr, addOnColumn);
+                        PrintGameField(game);
+                        playerNr = 1;
+                    }
+                }
+            }
+        }
+        if(winnerPlayer == 1 || winnerPlayer == 2)
+            Console.Write($"Winner is: Player {winnerPlayer}");
         return 0;    
     }
 
@@ -26,15 +75,15 @@ public class Program
     /// Walls are blue or other chars, player one is red and/or 'x' , player two is yellow and/or 'o'.
     /// </remarks>
     /// <param name="field">The field.</param>
-    private static void PrintGameField(int[,] field, int numRows, int numCols)
+    private static void PrintGameField(int[,] field)
     {
-       
-
-
+        Console.Clear();
         for (int rowLV = 0; rowLV < numRows; rowLV++)
         {
+            //alle rows durchgehen, beginnend mit der ersten blauen zeile
             if(rowLV == 0)
             {
+                //erste blaue zeile
                 for (int ersteZeileLV = 0; ersteZeileLV < numCols; ersteZeileLV++)
                 {
                     Console.BackgroundColor = ConsoleColor.Blue;
@@ -42,22 +91,46 @@ public class Program
                     Console.Write("  ");
                     Console.ResetColor();
                 }
+                //letztes feld der ersten zeile
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Write("  ");
                 Console.ResetColor();
             }
+            //absatz: beginn der nächsten zeile
             Console.WriteLine();
+            //zeile zeichnen immer "1 feld blau" und "1 feld spielbar"
             for (int colLV = 0; colLV < numCols; colLV++)
             {
-                 Console.BackgroundColor = ConsoleColor.Blue;
-                 Console.Write("  ");
-                 Console.ResetColor();
-                 Console.Write("  ");
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.Write("  ");
+                switch (field[rowLV, colLV])
+                {
+                    case 1:
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("  ");
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.Write("  ");
+                            break;
+                        }
+                    default:
+                        {
+                            Console.ResetColor();
+                            Console.Write("  ");
+                            break;
+                        }
+                }
+                
             }
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write("  ");
             Console.ResetColor();
             Console.WriteLine();
+            //zeile zeichnen die ganz blau ist
             for (int colLV = 0; colLV < numCols; colLV++)
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
@@ -65,11 +138,24 @@ public class Program
                 Console.Write("  ");
                 Console.ResetColor();
             }
+            // unterstes rechtes feld
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write("  ");
             Console.ResetColor();
-            if ()
 
+
+        }
+        Console.WriteLine();
+        for (int j = 0; j < numCols; j++)
+        {
+            if (j < 10 && j > 0)
+            {
+                Console.Write($"   {j + 1}");
+            }
+            else
+            {
+                Console.Write($"  {j + 1}");
+            }
         }
 
     }
@@ -91,7 +177,18 @@ public class Program
     /// </returns>
     private static bool AddPlayerDisc(int[,] field, int playerNr, int addOnColumn)
     {
-        return true;
+        rounds++;
+            for (int j = field.GetLength(0) -1; j >= 0; j--)
+            {
+                if (field[j, addOnColumn-1] == 0)
+                {
+                    field[j, addOnColumn-1] = playerNr;
+                    activeCol = addOnColumn - 1;
+                    activeRow = j;
+                    return true;
+                }
+            }
+        return false;
     }
 
     /// <summary>
@@ -114,7 +211,31 @@ public class Program
     /// </returns>
     private static bool IsGameEnd(int[,] field, out int winnerPlayer)
     {
-        winnerPlayer = 0;
-        return true;  
+        //Winner prüfen senkrecht
+        if (field[activeRow, activeCol] == playerNr &&
+            field[activeRow+1, activeCol] == playerNr &&
+            field[activeRow+2, activeCol] == playerNr &&
+            field[activeRow+3, activeCol] == playerNr)
+        {
+            winnerPlayer = playerNr;
+            return true;
+        }
+
+        //Volles Feld
+        if (rounds == numCols * numRows)
+        {
+            winnerPlayer = 0;
+            Console.WriteLine();
+            Console.WriteLine("Nobody won. Try again");
+            return true;
+        }
+
+
+
+
+
+        winnerPlayer = 1;
+            
+        return false; 
     }
 }
