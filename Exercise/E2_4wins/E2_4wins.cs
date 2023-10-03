@@ -5,15 +5,13 @@ namespace FourWins;
 
 public class Program
 {
-    private static int numRows = 6;
-    private static int numCols = 7;
     private static int activeRow, activeCol;
-    private static int rounds;
-    private static int playerNr = 1;
     public static int Main(string[] args)
     {
-        //Erstellen des Arrays
-
+        //using commandline arguments to determine the fields measurements in following format: "9x9"
+        //standart size will be 6x7 if the arguments are unparseable or if they are below 4 (minimum of 4x4 to even win)
+        int numRows = 6;
+        int numCols = 7;
         if (args.Length != 0)
         {
             string[] rc = args[0].Split('x');
@@ -32,39 +30,43 @@ public class Program
             numCols = 7;
         }
         int[,] game = new int[numRows, numCols];
-        //Ende von Array erstellen
         string eingabe;
         int winnerPlayer;
         int addOnColumn;
-        PrintGameField(game);
+        PrintGameField(game, numRows, numCols);
+        int playerNr = 1;
+        //game loop
         while (!IsGameEnd(game, out winnerPlayer))
         {
             Console.WriteLine();
             Console.WriteLine($"Player {playerNr}s turn!");
             Console.Write("Choose a column: ");
             eingabe = Console.ReadLine();
+            //validating input
             if (Int32.TryParse(eingabe, out addOnColumn))
             {
+                //validating column position (must exist aka: be between 1 and the number of columns) and stops input when a column is full 
                 if ((addOnColumn <= game.GetLength(1) && addOnColumn >= 1) && ((game[0, addOnColumn - 1]) == 0))
                 { 
                     if (playerNr == 1)
                     {
                         AddPlayerDisc(game, playerNr, addOnColumn);
-                        PrintGameField(game);
                         playerNr = 2;
                     }
 
                     else if (playerNr == 2)
                     {
                         AddPlayerDisc(game, playerNr, addOnColumn);
-                        PrintGameField(game);
                         playerNr = 1;
                     }
+                    PrintGameField(game, numRows, numCols);
                 }
             }
         }
+        //determine winner
         if(winnerPlayer == 1 || winnerPlayer == 2)
-            Console.Write($"Winner is: Player {winnerPlayer}");
+            Console.WriteLine();
+            Console.WriteLine($"Winner is: Player {winnerPlayer}");
         return 0;    
     }
 
@@ -75,15 +77,15 @@ public class Program
     /// Walls are blue or other chars, player one is red and/or 'x' , player two is yellow and/or 'o'.
     /// </remarks>
     /// <param name="field">The field.</param>
-    private static void PrintGameField(int[,] field)
+    private static void PrintGameField(int[,] field, int numCols, int numRows)
     {
         Console.Clear();
+        //going through all the rows
         for (int rowLV = 0; rowLV < numRows; rowLV++)
         {
-            //alle rows durchgehen, beginnend mit der ersten blauen zeile
-            if(rowLV == 0)
+            //first row which is fully blue, that comes before the array itself 
+            if (rowLV == 0)
             {
-                //erste blaue zeile
                 for (int ersteZeileLV = 0; ersteZeileLV < numCols; ersteZeileLV++)
                 {
                     Console.BackgroundColor = ConsoleColor.Blue;
@@ -91,14 +93,14 @@ public class Program
                     Console.Write("  ");
                     Console.ResetColor();
                 }
-                //letztes feld der ersten zeile
+                //last field of the first fully blue line
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Write("  ");
                 Console.ResetColor();
             }
-            //absatz: beginn der nächsten zeile
             Console.WriteLine();
-            //zeile zeichnen immer "1 feld blau" und "1 feld spielbar"
+            //here begins the part where the gamefield is printed in a given format: 
+            //always a blue (field = "__") and a colored / empty field depending on the arrays content
             for (int colLV = 0; colLV < numCols; colLV++)
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
@@ -126,11 +128,12 @@ public class Program
                 }
                 
             }
+            //last field of a "mixed" line
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write("  ");
             Console.ResetColor();
             Console.WriteLine();
-            //zeile zeichnen die ganz blau ist
+            //always followed by a fully blue line
             for (int colLV = 0; colLV < numCols; colLV++)
             {
                 Console.BackgroundColor = ConsoleColor.Blue;
@@ -138,7 +141,7 @@ public class Program
                 Console.Write("  ");
                 Console.ResetColor();
             }
-            // unterstes rechtes feld
+            //last field of a fully blue line
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Write("  ");
             Console.ResetColor();
@@ -177,17 +180,16 @@ public class Program
     /// </returns>
     private static bool AddPlayerDisc(int[,] field, int playerNr, int addOnColumn)
     {
-        rounds++;
-            for (int j = field.GetLength(0) -1; j >= 0; j--)
+        for (int j = field.GetLength(0) -1; j >= 0; j--)
+        {
+            if (field[j, addOnColumn-1] == 0)
             {
-                if (field[j, addOnColumn-1] == 0)
-                {
-                    field[j, addOnColumn-1] = playerNr;
-                    activeCol = addOnColumn - 1;
-                    activeRow = j;
-                    return true;
-                }
+                field[j, addOnColumn-1] = playerNr;
+                activeCol = addOnColumn - 1;
+                activeRow = j;
+                return true;
             }
+        }
         return false;
     }
 
@@ -211,31 +213,98 @@ public class Program
     /// </returns>
     private static bool IsGameEnd(int[,] field, out int winnerPlayer)
     {
-        //Winner prüfen senkrecht
-        if (field[activeRow, activeCol] == playerNr &&
-            field[activeRow+1, activeCol] == playerNr &&
-            field[activeRow+2, activeCol] == playerNr &&
-            field[activeRow+3, activeCol] == playerNr)
+        int rows = field.GetLength(0);
+        int cols = field.GetLength(1);
+
+        // horizontal wins
+        for (int i = 0; i < rows; i++)
         {
-            winnerPlayer = playerNr;
-            return true;
+            for (int j = 0; j < cols - 3; j++)
+            {
+                int player = field[i, j];
+                if (player != 0 &&
+                    player == field[i, j + 1] &&
+                    player == field[i, j + 2] &&
+                    player == field[i, j + 3])
+                {
+                    winnerPlayer = player;
+                    return true;
+                }
+            }
         }
 
-        //Volles Feld
-        if (rounds == numCols * numRows)
+        // vertical wins
+        for (int i = 0; i < rows - 3; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                int player = field[i, j];
+                if (player != 0 &&
+                    player == field[i + 1, j] &&
+                    player == field[i + 2, j] &&
+                    player == field[i + 3, j])
+                {
+                    winnerPlayer = player;
+                    return true;
+                }
+            }
+        }
+
+        // right diagonal wins
+        for (int i = 0; i < rows - 3; i++)
+        {
+            for (int j = 0; j < cols - 3; j++)
+            {
+                int player = field[i, j];
+                if (player != 0 &&
+                    player == field[i + 1, j + 1] &&
+                    player == field[i + 2, j + 2] &&
+                    player == field[i + 3, j + 3])
+                {
+                    winnerPlayer = player;
+                    return true;
+                }
+            }
+        }
+
+        // left diagonal wins
+        for (int i = 0; i < rows - 3; i++)
+        {
+            for (int j = 3; j < cols; j++)
+            {
+                int player = field[i, j];
+                if (player != 0 &&
+                    player == field[i + 1, j - 1] &&
+                    player == field[i + 2, j - 2] &&
+                    player == field[i + 3, j - 3])
+                {
+                    winnerPlayer = player;
+                    return true;
+                }
+            }
+        }
+
+        // draw
+        bool isFull = true;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                if (field[i, j] == 0)
+                {
+                    isFull = false;
+                    break;
+                }
+            }
+        }
+
+        if (isFull)
         {
             winnerPlayer = 0;
-            Console.WriteLine();
-            Console.WriteLine("Nobody won. Try again");
             return true;
         }
-
-
-
-
-
-        winnerPlayer = 1;
-            
-        return false; 
+        winnerPlayer = 0;
+        return false;
     }
 }
+
