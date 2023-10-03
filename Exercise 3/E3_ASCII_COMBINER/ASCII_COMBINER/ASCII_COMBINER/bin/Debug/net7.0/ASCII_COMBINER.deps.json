@@ -1,0 +1,26 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "ASCII_COMBINER/1.0.0": {
+        "dependencies": {
+          "ASCII_LIBRARY": "1.0.0"
+        },
+        "runtime": {
+          "ASCII_COMBINER.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ASCII_COMBINER/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -12,6 +12,11 @@ public class Program
         //standart size will be 6x7 if the arguments are unparseable or if they are below 4 (minimum of 4x4 to even win)
         int numRows = 6;
         int numCols = 7;
+        string? eingabe;
+        int winnerPlayer;
+        int addOnColumn;
+        int playerNr = 1;
+
         if (args.Length != 0)
         {
             string[] rc = args[0].Split('x');
@@ -24,17 +29,16 @@ public class Program
                 numCols = 7;
             }
         }
+
         if (numCols < 4 || numRows < 4)
         {
             numRows = 6;
             numCols = 7;
         }
         int[,] game = new int[numRows, numCols];
-        string eingabe;
-        int winnerPlayer;
-        int addOnColumn;
+
         PrintGameField(game, numRows, numCols);
-        int playerNr = 1;
+
         //game loop
         while (!IsGameEnd(game, out winnerPlayer))
         {
@@ -64,9 +68,11 @@ public class Program
             }
         }
         //determine winner
-        if(winnerPlayer == 1 || winnerPlayer == 2)
+        if (winnerPlayer == 1 || winnerPlayer == 2)
+        {
             Console.WriteLine();
             Console.WriteLine($"Winner is: Player {winnerPlayer}");
+        }
         return 0;    
     }
 

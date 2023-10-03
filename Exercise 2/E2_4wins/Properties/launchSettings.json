@@ -2,7 +2,7 @@
   "profiles": {
     "E2_4wins": {
       "commandName": "Project",
-      "commandLineArgs": "5x5"
+      "commandLineArgs": "6x6\r\n"
     }
   }
 }

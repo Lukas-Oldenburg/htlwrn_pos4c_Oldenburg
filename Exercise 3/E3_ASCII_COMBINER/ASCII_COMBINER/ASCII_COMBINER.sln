@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASCII_COMBINER", "ASCII_COMBINER\ASCII_COMBINER.csproj", "{142264B0-D007-4E52-A59C-AD5474D50BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCII_LIBRARY", "ASCII_LIBRARY\ASCII_LIBRARY.csproj", "{AC6A4AF3-C078-4C27-9ACF-E38978920CBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{142264B0-D007-4E52-A59C-AD5474D50BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142264B0-D007-4E52-A59C-AD5474D50BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142264B0-D007-4E52-A59C-AD5474D50BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142264B0-D007-4E52-A59C-AD5474D50BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC6A4AF3-C078-4C27-9ACF-E38978920CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6A4AF3-C078-4C27-9ACF-E38978920CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6A4AF3-C078-4C27-9ACF-E38978920CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6A4AF3-C078-4C27-9ACF-E38978920CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B839C25-A0F3-42C3-B1F3-1BFA02A720DC}
+	EndGlobalSection
+EndGlobal
