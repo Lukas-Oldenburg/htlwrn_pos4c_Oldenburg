@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "Task-data",
+      "appliesTo": "E4_Console_Chart/bin/data.txt",
+      "type": "launch"
+    }
+  ]
+}
