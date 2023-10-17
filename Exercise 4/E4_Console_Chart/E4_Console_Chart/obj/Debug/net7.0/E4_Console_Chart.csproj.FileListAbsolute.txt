@@ -1,0 +1,4 @@
+C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfoInputs.cache
+C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfo.cs
+C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.csproj.CoreCompileInputs.cache
