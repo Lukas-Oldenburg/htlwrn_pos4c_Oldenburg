@@ -1,10 +1,10 @@
 ﻿class Program
 {
-    static void main(String[] args)
+    static void Main(String[] args)
     {
         if (args.Length != 4)
         {
-            Console.WriteLine("Wrong arguments");
+            Console.WriteLine("Arguments are wrong, use Filename GroupingColumn NumberColumn NumberOfOutputs");
             return;
         }
 
@@ -29,8 +29,8 @@
             return;
         }
 
-        int col = Array.IndexOf(header, groupingColumn)
-        int num = Array.IndexOf(header, numericColumn)
+        int col = Array.IndexOf(header, groupingColumn);
+        int num = Array.IndexOf(header, numericColumn);
 
         var data = lines
             .Skip(1)

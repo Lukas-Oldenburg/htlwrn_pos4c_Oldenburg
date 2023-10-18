@@ -2,3 +2,18 @@ C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\
 C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfoInputs.cache
 C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfo.cs
 C:\Users\Lukas\Desktop\POSREPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.csproj.CoreCompileInputs.cache
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfoInputs.cache
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.AssemblyInfo.cs
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.csproj.CoreCompileInputs.cache
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\E4_Console_Chart.exe
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\data.txt
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\E4_Console_Chart.deps.json
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\E4_Console_Chart.runtimeconfig.json
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\E4_Console_Chart.dll
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\bin\Debug\net7.0\E4_Console_Chart.pdb
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.dll
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\refint\E4_Console_Chart.dll
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.pdb
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\E4_Console_Chart.genruntimeconfig.cache
+C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\obj\Debug\net7.0\ref\E4_Console_Chart.dll

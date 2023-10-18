@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "E4_Console_Chart": {
+      "commandName": "Project",
+      "commandLineArgs": "data.txt country attacks 999"
+    }
+  }
+}
