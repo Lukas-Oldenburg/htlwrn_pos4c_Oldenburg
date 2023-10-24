@@ -11,7 +11,7 @@ public static class Quiz
     /// </exception>
     public static int[] GetEvenNumbers(int exclusiveUpperLimit)
     {
-        return Enumerable.Range(1, (exclusiveUpperLimit >= 1) ? exclusiveUpperLimit - 1 : throw new ArgumentOutOfRangeException($"{exclusiveUpperLimit} is lower than 1")).Where(x => int.IsEvenInteger(x)).ToArray();
+        return Enumerable.Range(1, (exclusiveUpperLimit >= 1) ? exclusiveUpperLimit - 1 : throw new ArgumentOutOfRangeException("Argument must be 1 or higher")).Where(x => int.IsEvenInteger(x)).ToArray();
     }
 
     /// <summary>
