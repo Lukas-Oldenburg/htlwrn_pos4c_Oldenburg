@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "e6App": {
+      "commandName": "Project",
+      "commandLineArgs": "access-log.txt photographers"
+    }
+  }
+}
