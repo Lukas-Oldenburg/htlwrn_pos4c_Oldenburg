@@ -1,5 +1,4 @@
-﻿// FileAuditContext.cs
-using E7_Audit;
+﻿using E7_Audit;
 using Microsoft.EntityFrameworkCore;
 
 class E7_Logic
@@ -76,33 +75,27 @@ class E7_Logic
 
     private async Task Log()
     {
-        using (var context = new AuditContext())
-        {
-            var logEntries = await context.FileAudits.ToListAsync();
+        var logEntries = await Context.FileAudits.ToListAsync();
 
-            if (logEntries.Any())
+        if (logEntries.Any())
+        {
+            Console.WriteLine("Log entries:");
+            foreach (var entry in logEntries)
             {
-                Console.WriteLine("Log entries:");
-                foreach (var entry in logEntries)
-                {
-                    Console.WriteLine($"{entry.Timestamp} - {entry.ChangeType} - {entry.FileName} - {entry.FullPath}");
-                }
+                Console.WriteLine($"{entry.Timestamp} - {entry.ChangeType} - {entry.FileName} - {entry.FullPath}");
             }
-            else
-            {
-                Console.WriteLine("Log is empty.");
-            }
+        }
+        else
+        {
+            Console.WriteLine("Log is empty.");
         }
     }
 
     private async Task Clean()
     {
-        using (var context = new AuditContext())
-        {
-            context.FileAudits.RemoveRange(context.FileAudits);
-            await context.SaveChangesAsync();
+        Context.FileAudits.RemoveRange(Context.FileAudits);
+        await Context.SaveChangesAsync();
 
-            Console.WriteLine("Log entries cleaned up.");
-        }
+        Console.WriteLine("Log entries cleaned up.");
     }
 }

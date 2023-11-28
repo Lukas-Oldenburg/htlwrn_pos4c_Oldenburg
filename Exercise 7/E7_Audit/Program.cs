@@ -17,7 +17,7 @@ namespace E7_Audit
             string command = args[0].ToLower();
             E7_Logic auditContext = new();
 
-            await auditContext.ExecuteCommand(command, args.Length == 2 ? args[1] : null);
+            await auditContext.ExecuteCommand(command, args.Length == 2 ? args[1] : null!);
         }
     }
 }
