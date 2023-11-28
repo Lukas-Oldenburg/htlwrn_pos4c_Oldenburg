@@ -1,5 +1,4 @@
-﻿// E7AuditContext.cs
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace E7_Audit
 {

@@ -17,24 +17,7 @@ namespace E7_Audit
             string command = args[0].ToLower();
             E7_Logic auditContext = new();
 
-            switch (command)
-            {
-                case "watch" when args.Length == 2:
-                    await auditContext.ExecuteCommand("watch", args[1]);
-                    break;
-
-                case "log":
-                    await auditContext.ExecuteCommand("log");
-                    break;
-
-                case "clean":
-                    await auditContext.ExecuteCommand("clean");
-                    break;
-
-                default:
-                    Console.WriteLine($"Unknown command: {command}");
-                    break;
-            }
+            await auditContext.ExecuteCommand(command, args.Length == 2 ? args[1] : null);
         }
     }
 }

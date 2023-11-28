@@ -2,7 +2,7 @@
   "profiles": {
     "E7_Audit": {
       "commandName": "Project",
-      "commandLineArgs": "log",
+      "commandLineArgs": "watch C:\\temp",
       "workingDirectory": "C:\\Users\\lukio\\Desktop\\POS REPO\\Exercise 7\\E7_Audit"
     }
   }
