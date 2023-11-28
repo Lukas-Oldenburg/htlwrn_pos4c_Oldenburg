@@ -9,3 +9,5 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = E4_Console_Chart
 build_property.ProjectDir = C:\Users\lukio\Desktop\POS REPO\Exercise 4\E4_Console_Chart\E4_Console_Chart\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

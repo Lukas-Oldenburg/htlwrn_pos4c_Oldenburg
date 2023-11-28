@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "E7_Audit": {
+      "commandName": "Project",
+      "commandLineArgs": "log",
+      "workingDirectory": "C:\\Users\\lukio\\Desktop\\POS REPO\\Exercise 7\\E7_Audit"
+    }
+  }
+}
